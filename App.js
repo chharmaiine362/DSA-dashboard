@@ -1,17 +1,25 @@
-// App.js
-import React, { useState } from "react";
+import { useState } from 'react'
+import './App.css'
+import Header from './dashboard/Header'
+import Sidebar from './dashboard/Sidebar'
+import Home12 from './dashboard/Home12'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchItem1 from "./searchItem1/SearchItem1";
-import Home from "./home/Home";
 
-const App = () => {
+function App() {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
 
   return (
-    <div>  
-      <SearchItem1 />
-      <Home   />
+    <div className='grid-container'>
+      <Header OpenSidebar={OpenSidebar}/>
+      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+      <Home12 />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
+
