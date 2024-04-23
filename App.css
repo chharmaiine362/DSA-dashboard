@@ -1,16 +1,15 @@
-/* *{
-    text-align: center;
-   color: rgba(11,87,208,.11);
-} */
-/* app.css */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: transparent; /* Example of a very dark blue color */
-  color: #022140;
-  font-family: 'Montserrat', sans-serif;
+*{
+  /* background-color:  #555; */
+  background-color: #1d293c;
+  color: white;
 }
-
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1d293c;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
   
   .icon {
     vertical-align: middle;
@@ -24,6 +23,7 @@ body {
   }
   .icon, .icon_header {
     margin-right: 5px;
+    background-color: #263043;
   }
   
   .close_icon {
@@ -75,6 +75,7 @@ body {
     align-items: center;
     padding: 10px 8px 0px 10px;
     margin-bottom: 30px;
+    background-color: #263043;
   }
   
   .sidebar-title > span {
@@ -85,6 +86,7 @@ body {
     margin-top: 15px;
     font-size: 20px;
     font-weight: 700;
+    background-color: #263043;
   }
   
   .sidebar-list {
@@ -95,6 +97,7 @@ body {
   .sidebar-list-item {
     padding: 20px;
     font-size: 18px;
+    background-color: #263043;
   }
   
   .sidebar-list-item:hover {
@@ -105,6 +108,7 @@ body {
   .sidebar-list-item > a {
     text-decoration: none;
     color: #9e9ea4;
+    background-color: #263043;
   }
   
   .sidebar-responsive {
@@ -139,36 +143,47 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
     margin: 15px 0;
+    
   }
   
-  /* Change the background color for all cards to dark blue */
   .card {
-    background-color: #a5d8dd; /* This is a dark blue color */
-  /* Other existing styles... */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 8px 15px;
+    border-radius: 5px;
+    /* background-color: #A5D8DD; */
   }
-
-/* If you want to have different shades of dark blue for each card, you can target them individually using :nth-child pseudo-class */
+  .text-color{
+    background-color: #658fb9
+  }
   .card:first-child {
-    background-color: #a5d8dd; /* Adjust the color as needed */
+    background-color: #658fb9;
   }
+  
   .card:nth-child(2) {
-    background-color: #a5d8dd; /* Adjust the color as needed */
+    background-color: #658fb9;
   }
+  
   .card:nth-child(3) {
-    background-color: #a5d8dd; /* Adjust the color as needed */
+    background-color: #658fb9;
   }
+  
   .card:nth-child(4) {
-    background-color: #a5d8dd; /* Adjust the color as needed */
+    background-color: #658fb9;
   }
-
   
   .card-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #658fb9;
+
   }
   
   .card-inner > .card_icon {
+    background-color: #658fb9;
+
     font-size: 25px;
   }
   
@@ -251,7 +266,7 @@ body {
     height: 70px;
     width: 220px;
     border: none;
-    background-color: #ffffff;
+    background-color: #405370;
     border-bottom: none;
     overflow: hidden;
     resize: none;
@@ -289,8 +304,8 @@ body {
     top: 100%; /* Position below the textarea */
     left: 0;
     width: calc(100% - 2px); /* Adjust width to account for border */
-    background-color: #ffffff; /* Set background color */
-    border: 1px solid #ccc; /* Add border for visual separation */
+    background-color: #fff; /* Set background color */
+    border: 1px solid #fff; /* Add border for visual separation */
     border-top: none; /* Remove top border to avoid duplication */
     z-index: 2; /* Ensure the search results appear above other elements */
     max-height: 100px; /* Set max height to enable scrolling */
@@ -300,7 +315,7 @@ body {
   .dotItems {
     height: 4px;
     width: 4px;
-    background-color: rgb(64, 62, 62);
+    background-color: #28374f;
     border-radius: 50%;
     display: block; /* Change to block to make them vertical */
     margin-bottom: 4px; /* Adjust the vertical gap */
