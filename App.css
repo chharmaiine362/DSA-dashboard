@@ -11,6 +11,7 @@ body {
     font-family: 'Montserrat', sans-serif;
   }
   
+  
   .icon {
     vertical-align: middle;
     line-height: 1px;
@@ -304,8 +305,8 @@ body {
     top: 100%; /* Position below the textarea */
     left: 0;
     width: calc(100% - 2px); /* Adjust width to account for border */
-    background-color: #fff; /* Set background color */
-    border: 1px solid #fff; /* Add border for visual separation */
+    background-color: #405370; /* Set background color */
+    border: 1px solid #ccc; /* Add border for visual separation */
     border-top: none; /* Remove top border to avoid duplication */
     z-index: 2; /* Ensure the search results appear above other elements */
     max-height: 100px; /* Set max height to enable scrolling */
@@ -315,7 +316,7 @@ body {
   .dotItems {
     height: 4px;
     width: 4px;
-    background-color: #28374f;
+    background-color: #1d2634;
     border-radius: 50%;
     display: block; /* Change to block to make them vertical */
     margin-bottom: 4px; /* Adjust the vertical gap */
