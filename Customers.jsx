@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import CSV from 'parse-csv'; // Assuming you are using a CSV parsing library
-
-// Replace with the path to your CSV data file, or fetch it from an API
-import csvData from '/Users/charmainelim/Downloads/new/src/dashboard/sample_data.csv';
+import Papa from 'papaparse';
 
 function Customers() {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    // Parse the CSV data and update the state
-    const parser = new CSV.Parser();
-    const result = parser.parse(csvData);
-    setCustomers(result.data);
+    // Assuming your CSV file is placed in the public folder
+    fetch('../sample.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        Papa.parse(csvText, {
+          header: true,
+          complete: (results) => {
+            console.log(results.data); // Check the parsed results
+            setCustomers(results.data);
+          }
+        });
+      })
+      .catch(error => console.error('Error parsing CSV file:', error));
   }, []);
 
   return (
@@ -34,15 +40,15 @@ function Customers() {
         <tbody>
           {customers.map((customer, index) => (
             <tr key={index}>
-              <td>{customer['ORDER NUMBER']}</td>
-              <td>{customer['QUANTITY']}</td>
-              <td>${customer['PRICE']}</td>
-              <td>{customer['ORDER DATE']}</td>
-              <td>{customer['QTR_ID']}</td>
-              <td>{customer['MONTH_ID']}</td>
-              <td>{customer['YEAR_ID']}</td>
-              <td>{customer['CUSTOMER NAME']}</td>
-              <td>{customer['PHONE']}</td>
+              <td>{customer.ORDER_NUMBER}</td>
+              <td>{customer.QUANTITY}</td>
+              <td>${customer.PRICE}</td>
+              <td>{customer.ORDER_DATE}</td>
+              <td>{customer.QTR_ID}</td>
+              <td>{customer.MONTH_ID}</td>
+              <td>{customer.YEAR_ID}</td>
+              <td>{customer.CUSTOMER_NAME}</td> {/* Make sure field names match CSV headers */}
+              <td>{customer.PHONE}</td>
             </tr>
           ))}
         </tbody>
