@@ -161,7 +161,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
                 list={`datalist-${index}`}
               />
               <div className="dotWrapper" onClick={(event) => handlePopoverClick(event, index)}>
-                <span style={{ cursor: 'pointer', position: 'absolute', right: '8px', bottom: '6px' }}>&
+                <span style={{ cursor: 'pointer', position: 'absolute', right: '8px', bottom: '6px' }}>
 </span>
               </div>
             </div>
