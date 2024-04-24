@@ -65,31 +65,31 @@ function Home12() {
         <div className='main-cards text-white'>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3 className='text-color'>Tickets Bought</h3>
+                    <h3 className='text-color'>Tickets Bought/Year</h3>
                     <BsFillArchiveFill className='card_icon'/>
                 </div>
                 <h1 className='text-white text-color'>300</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3 className='text-white text-color'>Revenue</h3>
+                    <h3 className='text-white text-color'>Revenue/Year</h3>
                     <BsFillGrid3X3GapFill className='card_icon'/>
                 </div>
-                <h1 className='text-white text-color'>12</h1>
+                <h1 className='text-white text-color'>$9973</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3 className='text-white text-color'>Customers</h3>
+                    <h3 className='text-white text-color'>Customers/Year</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
-                <h1 className='text-white text-color'>33</h1>
+                <h1 className='text-white text-color'>268</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3 className='text-white text-color' >Temperature</h3>
+                    <h3 className='text-white text-color' >Weather/°C</h3>
                     <BsFillBellFill className='card_icon'/>
                 </div>
-                <h1 className='text-white text-color'>42</h1>
+                <h1 className='text-white text-color'>Sunny</h1>
             </div>
         </div>
 
