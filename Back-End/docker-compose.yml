@@ -1,0 +1,35 @@
+services:
+
+  mysql_db:
+    container_name: mysql_db
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: sg_attractions
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql_data:/data/mysql
+    networks:
+      - rojak_network
+    restart: always
+
+  model:
+    container_name: model
+    build:
+      context: .
+      dockerfile: model.Dockerfile
+    depends_on:
+      - mysql_db
+    networks:
+      - rojak_network
+
+volumes:
+  mysql_data:
+  
+networks:
+  rojak_network:
