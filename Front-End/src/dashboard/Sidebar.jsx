@@ -1,7 +1,7 @@
 import React from 'react';
-// Import the cable car icon from Boxicons and other icons from Bootstrap icons
 import { BiSolidCableCar } from 'react-icons/bi';
 import { BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   return (
@@ -15,23 +15,24 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <a href="#">
+                <Link to="/">
                     <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href="#">
-                    <BsFillArchiveFill className='icon'/> Products
-                </a>
+                <Link to="/FAQ">
+                    <BsFillArchiveFill className='icon'/> FAQ
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href="#">
+                <Link to="/customers">
                     <BsPeopleFill className='icon'/> Customers
-                </a>
+                </Link>
             </li>
+            {/* Add more links as needed */}
         </ul>
     </aside>
-  )
+  );
 }
 
 export default Sidebar;
