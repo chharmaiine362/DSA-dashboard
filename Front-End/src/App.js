@@ -4,7 +4,7 @@ import Header from './dashboard/Header';
 import Sidebar from './dashboard/Sidebar';
 import Home12 from './dashboard/Home12';
 import Customers from './dashboard/Customers';
- // Make sure the path is correct
+import FAQ from './dashboard/FAQ';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -23,7 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home12 />} />
           <Route path="/customers" element={<Customers />} />
-          {/* Add more routes as needed */}
+          <Route path="/FAQ" element={<FAQ />} />
+          <Route path="*" element={<div>No content available - check your route paths and component rendering.</div>} />
         </Routes>
       </div>
     </Router>
