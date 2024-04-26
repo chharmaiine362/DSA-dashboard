@@ -3,12 +3,11 @@ import Chart from "react-apexcharts";
 import jsonData from "../data.json";
 
 function Home({ selectedDataType, selectedDataTypes }) {
-    // State includes chart options and the series of data to be displayed.
     const [state, setState] = useState({
         chartOptions: {
-            colors: ['#ff75d3', '#1bdbf5', '#f4e683', '#44ee77'], // Initial color palette for charts
+            colors: ['#ff75d3', '#1bdbf5', '#f4e683', '#44ee77'],
             xaxis: {
-                categories: jsonData.years, // X-axis categories from imported data
+                categories: jsonData.years,
                 labels: {
                     style: {
                         colors: '#ffffff' // Set x-axis labels color to white
@@ -41,19 +40,14 @@ function Home({ selectedDataType, selectedDataTypes }) {
                     vertical: 0
                 }
             },
-            tooltip: {
-                enabled: true,
-                theme: 'dark'    // change tooltip colour frm light grey to black 
-              }
         },
         series: [],
     });
 
-    // Effect hooks to update chart data when selected data types change.
     useEffect(() => {
         if (selectedDataType) {
-            const palette = ['#ff75d3', '#1bdbf5', '#f4e683', '#44ee77'];
-            const data = jsonData.data[selectedDataType]; // Data extraction based on selection
+            const palette = ['#E91E63', '#FF9800', '#2196F3'];
+            const data = jsonData.data[selectedDataType];
 
             setState((prevState) => ({
                 ...prevState,
@@ -71,18 +65,17 @@ function Home({ selectedDataType, selectedDataTypes }) {
                 series: data.map((country, index) => ({
                     name: country.name,
                     data: country.values,
-                    color: palette[index % palette.length], // Colour cycle for series
+                    color: palette[index % palette.length],
                 })),
             }));
-        } else if (selectedDataTypes.length > 0) {             
-            // Handle multiple data types selection
+        } else if (selectedDataTypes.length > 0) {
             const seriesData = selectedDataTypes.map((dataType, index) => {
                 const data = jsonData.data.find(item => item.name.toLowerCase().includes(dataType.toLowerCase()));
                 if (data) {
                     return {
                         name: data.name,
                         data: data.values,
-                        originalData: data.values // Store original data for manipulation
+                        originalData: data.values
                     };
                 } else {
                     return null;
@@ -95,8 +88,7 @@ function Home({ selectedDataType, selectedDataTypes }) {
             }));
         }
     }, [selectedDataType, selectedDataTypes]);
-    
-    // Function to adjust the chart data based on the range slider input.
+
     const handleRangeChange = (event) => {
         const range = parseInt(event.target.value);
         setState((prevState) => ({
@@ -104,19 +96,19 @@ function Home({ selectedDataType, selectedDataTypes }) {
             chartOptions: {
                 ...prevState.chartOptions,
                 xaxis: {
-                    ...prevState.chartOptions.xaxis, 
-                    categories: jsonData.years.slice(0, range), // Adjust x-axis categories based on slider
+                    ...prevState.chartOptions.xaxis,
+                    categories: jsonData.years.slice(0, range),
                     labels: {
                         show: true,
                             style: {
-                                colors: '#263043'
+                                colors: '#ffffff'
                             }
                     }
                 },
             },
             series: prevState.series.map((item) => ({
                 ...item,
-                 data: item.originalData.slice(0, range), // Adjust data range for series
+                 data: item.originalData.slice(0, range),
                  
             })),
         }));
