@@ -1,0 +1,46 @@
+.contact_table_container {
+  padding: 20px;
+  width: 128%;
+
+  .contact__table {
+    table {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-collapse: collapse;
+
+      th {
+        background-color: #263043;
+        color: rgb(180, 169, 169);
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #777474;
+
+        input {
+          font-size: 14px;
+          width: 100%;
+          padding: 10px;
+          background-color: #263043;
+          color: white;
+          border: 1px solid #494747;
+          box-sizing: border-box; /* Ensure padding doesn't increase input width */
+        }
+        input:focus{
+          outline: none;
+        }
+      }
+
+      td {
+        color: #ddd;
+        // background-color: #f2f2f2;
+        background-color: #263043;
+        padding: 10px;
+        border: 1px solid #5d5a5a;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    }
+  }
+}
