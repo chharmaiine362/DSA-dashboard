@@ -7,7 +7,7 @@ import
  from 'recharts';
 import CustomPopover from '../customPopover/CustomPopover';
 // import Dashboard from './mainDashboard/Dashboard';
-
+// The Home12 component serves as a main dashboard page, displaying various data visualizations and statistics.
 function Home12() {
 
     const data = [
@@ -58,13 +58,16 @@ function Home12() {
 
   return (
     <main className='main-container'>
+        // Title section of the dashboard 
         <div className='main-title'>
             <h3>DASHBOARD</h3>
         </div>
-
+     
+        // Card section for displaying key metrics in a summarized format
         <div className='main-cards text-white'>
             <div className='card'>
                 <div className='card-inner'>
+                    // Individual card for displaying tickets statistics
                     <h3 className='text-color'>Tickets Bought/Year</h3>
                     <BsFillArchiveFill className='card_icon'/>
                 </div>
@@ -72,6 +75,7 @@ function Home12() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
+                    // Card for displaying revenue
                     <h3 className='text-white text-color'>Revenue/Year</h3>
                     <BsFillGrid3X3GapFill className='card_icon'/>
                 </div>
@@ -79,6 +83,7 @@ function Home12() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
+                    // Card for displaying customer count
                     <h3 className='text-white text-color'>Customers/Year</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
@@ -86,6 +91,7 @@ function Home12() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
+                    // Card for displaying weather information
                     <h3 className='text-white text-color' >Weather/°C</h3>
                     <BsFillBellFill className='card_icon'/>
                 </div>
