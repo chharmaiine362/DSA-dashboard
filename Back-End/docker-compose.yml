@@ -30,6 +30,21 @@ services:
     networks:
       - rojak_network
 
+  app:
+    container_name: app
+    build:
+      context: ../Front-End/
+      dockerfile: app.Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - model
+    volumes:
+      - model_data:/app/data
+    networks:
+      - rojak_network
+    restart: always
+
 volumes:
   mysql_data:
     driver: local
