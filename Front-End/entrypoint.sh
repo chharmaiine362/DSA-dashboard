@@ -6,7 +6,7 @@ while [ ! -f /app/data/data.json ]; do
 done
 
 # Move data.json to /app/src
-mv /app/data/data.json /app/src/data.json
+cp /app/data/data.json /app/src/data.json
 
 # Start the application
 npm start
