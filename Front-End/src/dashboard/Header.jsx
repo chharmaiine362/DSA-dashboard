@@ -3,6 +3,9 @@ import
  {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
  from 'react-icons/bs'
 
+// The Header component is responsible for rendering the application's navigation bar.
+// It includes an icon to open the sidebar and other user-related icons.
+
 function Header({OpenSidebar}) {
   return (
     <header className='header'>

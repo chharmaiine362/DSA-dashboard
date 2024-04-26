@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import jsonData from '../data.json';
 import Popover from '@mui/material/Popover';
 
+// component allows for dynamic input fields with search capabilities and graph line management
 function SearchItem1({ handleDataSelection, removeGraphLine }) {
   const [inputValues, setInputValues] = useState(['']);
   const [showCrosses, setShowCrosses] = useState([false]);
@@ -10,6 +11,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
   const [graphLines, setGraphLines] = useState([true]); // State to track visibility of graph lines
   const textareaRefs = useRef([]);
 
+   // Handles outside click to reset search results when clicking outside of the input area
   useEffect(() => {
     const handleOutsideClick = (index) => (event) => {
       if (textareaRefs.current[index] && !textareaRefs.current[index].contains(event.target)) {
@@ -25,13 +27,14 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
       document.addEventListener('click', handleOutsideClick(index));
     });
 
+    // Cleanup function to remove event listeners
     return () => {
       textareaRefs.current.forEach((ref, index) => {
         document.removeEventListener('click', handleOutsideClick(index));
       });
     };
   }, []);
-
+  // Manages changes in the input fields and filters the data according to the input
   const handleInputChange = (index) => (event) => {
     const searchTerm = event.target.value.toLowerCase();
     setInputValues((prevValues) => {
@@ -60,6 +63,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
     }
   };
 
+  // Clears the input and the associated graph line when the cross icon is clicked
   const clearInput = (index) => () => {
     setInputValues((prevValues) => {
       const newValues = [...prevValues];
@@ -77,6 +81,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
     removeGraphLine(index);
   };
 
+  // Handles the selection of a search result, updating the input and graph lines accordingly
   const handleResultClick = (index, result) => {
     setInputValues((prevValues) => {
       const newValues = [...prevValues];
@@ -91,6 +96,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
     handleDataSelection((prevSelectedDataTypes) => [...prevSelectedDataTypes.slice(0, index), result]);
   };
 
+  // Adds a new textarea for additional inputs, respecting a maximum of 4 fields
   const addTextarea = () => {
     if (inputValues.length < 4) {
       setInputValues((prevValues) => [...prevValues, '']);
@@ -101,6 +107,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
     }
   };
 
+  // Removes a textarea and its associated elements when not needed anymore
   const removeTextarea = (index) => () => {
     // Check if an input has been selected in the textarea
     const isInputSelected = inputValues[index] !== '';
@@ -137,6 +144,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
     console.log('Editing textarea', index);
   };
 
+  // Toggles popover visibility linked to specific textarea.
   const handlePopoverClick = (event, index) => {
     setPopoverAnchorEl(popoverAnchorEl === index ? null : index);
     event.stopPropagation();
@@ -155,7 +163,7 @@ function SearchItem1({ handleDataSelection, removeGraphLine }) {
                 onChange={handleInputChange(index)}
                 onFocus={() => setShowCrosses((prevShowCrosses) => [...prevShowCrosses.slice(0, index), true, ...prevShowCrosses.slice(index + 1)])}
                 onBlur={() => setShowCrosses((prevShowCrosses) => [...prevShowCrosses.slice(0, index), false, ...prevShowCrosses.slice(index + 1)])}
-                className="textArea text-primary" 
+                className="textArea text-white" 
                 wrap="off"
                 ref={(el) => (textareaRefs.current[index] = el)}
                 list={`datalist-${index}`}
