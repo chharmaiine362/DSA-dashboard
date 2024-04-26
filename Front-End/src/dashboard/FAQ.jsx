@@ -26,7 +26,7 @@ const FAQ = () => {
     return (
         <Box sx={{
             margin: '40px',
-            width: '150%', // Set to 50% of the parent container
+            width: '150%', // Set to 150% of the parent container
             '.MuiPaper-root': { // This targets the root of the Accordion component which is a Paper element
                 width: '150%', // Ensure the accordion takes the full width of the Box
                 backgroundColor: '#658fb9', // Set the FAQ boxes to light blue
