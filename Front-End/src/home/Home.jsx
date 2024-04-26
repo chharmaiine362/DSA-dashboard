@@ -41,6 +41,10 @@ function Home({ selectedDataType, selectedDataTypes }) {
                     vertical: 0
                 }
             },
+            tooltip: {
+                enabled: true,
+                theme: 'dark'    // change tooltip colour frm light grey to black 
+              }
         },
         series: [],
     });
