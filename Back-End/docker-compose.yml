@@ -25,11 +25,17 @@ services:
       dockerfile: model.Dockerfile
     depends_on:
       - mysql_db
+    volumes:
+      - model_data:/app/data
     networks:
       - rojak_network
 
 volumes:
   mysql_data:
-  
+    driver: local
+  model_data:
+    driver: local
+
 networks:
   rojak_network:
+    driver: bridge
