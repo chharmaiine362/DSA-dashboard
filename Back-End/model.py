@@ -5,6 +5,12 @@ import json
 from sklearn.linear_model import LinearRegression
 
 def connect_to_rojak():
+    '''
+    Creates a connection to mysql_db
+
+    Returns:
+        connection to mysql_db
+    '''
     while True:
         try:
             connection = mysql.connector.connect(
@@ -21,6 +27,12 @@ def connect_to_rojak():
             time.sleep(5)
 
 def get_prices():
+    '''
+    Retrieve prices table from mysql_db as a dataframe
+
+    Returns:
+        dataframe of prices table
+    '''
     # Connect to MySQL
     connection = connect_to_rojak()
 
@@ -50,9 +62,11 @@ def get_prices():
     # Concatenate all batches into a single DataFrame
     out = pd.concat(batches, ignore_index=True)
     return out
-
-# Fit, Predict, Insert
-def fit_predict_insert(df):
+def fit_predict_insert(df): 
+    '''
+    Fit the linear model using df, predict the next year prices, and
+    insert into predictions table
+    '''
     # One hot encoding
     df['attraction_id'] = df['attraction_id'].astype('category')
     df['category'] = df['category'].astype('category')
@@ -66,17 +80,17 @@ def fit_predict_insert(df):
     model = LinearRegression()
     model.fit(X, y)
 
-    # Predict next year's price
+    # Predict next year prices
     next_year = df.groupby(['attraction_id', 'category']).agg({'year': 'max'}).reset_index()
     next_year['year'] += 1
     next_year_encoded = pd.get_dummies(next_year, drop_first=True)
     next_year['price'] = model.predict(next_year_encoded).round(2)
 
-    # Insert to predictions table
+    # Connect to database
     connection = connect_to_rojak()
     cursor = connection.cursor()    
 
-    # Insert each row as a record into prediction table
+    # Insert each row as a record into predictions table
     for index, row in next_year.iterrows():
         query = "INSERT INTO predictions (attraction_id, year, category, price) VALUES (%s, %s, %s, %s)"
         values = (row['attraction_id'], row['year'], row['category'], row['price'])
@@ -90,17 +104,20 @@ def fit_predict_insert(df):
     # Generete data.json
     data = pd.concat([df, next_year])
     data_to_json(data)
-    return next_year
 
 def data_to_json(data):
-    # Get attractions name and acronym
+    '''
+    Generate a json file for app
+    '''
+    # Connect to databsae
     connection = connect_to_rojak()
     cursor = connection.cursor()
-
+    
+    # Get attractions name and acronym
     query = 'SELECT * FROM attractions'
-
     cursor.execute(query)
     records = cursor.fetchall()
+
     attractions = pd.DataFrame(records, columns=cursor.column_names)
 
     # Close the cursor and connection
@@ -135,7 +152,7 @@ def data_to_json(data):
     json_data['data'].append(dic)
 
     # Save to data.json
-    with open('./data.json', 'w') as outfile:
+    with open('/app/data/data.json', 'w') as outfile:
         json.dump(json_data, outfile)
 
 if __name__ == "__main__":
