@@ -36,10 +36,12 @@ const FAQ = () => {
                     marginBottom: '30px', // Adds space between the accordion items
                 },
             },
+            // answer text
             '.MuiAccordionDetails-root': { // This targets the AccordionDetails component
                 backgroundColor: '#405370', // Ensure the details match the Accordion color
                 color: 'white', // Text color for the accordion details
             },
+            // question text
             '.MuiAccordionSummary-root': { // This targets the AccordionSummary component
                 backgroundColor: '#658fb9', // Ensure the summary matches the Accordion color
                 color: 'white', // Text color for the accordion summary
