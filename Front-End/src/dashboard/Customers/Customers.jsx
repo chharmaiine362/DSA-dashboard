@@ -1,60 +1,145 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse';
+import contacts from './contacts.json'; // Import JSON data
+import styles from './styles.module.scss';
 
-function Customers() {
-  const [customers, setCustomers] = useState([]);
+const Contacts = () => {
+  // Use state to manage contacts data
+  const [contactList, setContactList] = useState([]);
+  const [nameFilter, setNameFilter] = useState('');
+  const [ageFilter, setAgeFilter] = useState('');
+  const [phoneNumberFilter, setPhoneNumberFilter] = useState('');
+  const [emailFilter, setEmailFilter] = useState('');
+  const [addressFilter, setAddressFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState('');
+  const [zipCodeFilter, setZipCodeFilter] = useState('');
 
   useEffect(() => {
-    // Assuming your CSV file is placed in the public folder
-    fetch('../sample.csv')
-      .then(response => response.text())
-      .then(csvText => {
-        Papa.parse(csvText, {
-          header: true,
-          complete: (results) => {
-            console.log(results.data); // Check the parsed results
-            setCustomers(results.data);
-          }
-        });
-      })
-      .catch(error => console.error('Error parsing CSV file:', error));
+    // Set contacts data from imported JSON
+    setContactList(contacts);
   }, []);
 
+  function filterData(value, field) {
+    const filterItem = value.trim().toLowerCase();
+
+    if (filterItem === '') {
+      setContactList(contacts);
+    } else {
+      const filteredData = contacts.filter((item) =>
+        item[field].toString().toLowerCase().includes(filterItem)
+      );
+      setContactList(filteredData);
+    }
+  }
+
   return (
-    <div className="customers-container">
-      <h1>Customer Orders</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Order Number</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Order Date</th>
-            <th>Qtr ID</th>
-            <th>Month ID</th>
-            <th>Year ID</th>
-            <th>Customer Name</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers.map((customer, index) => (
-            <tr key={index}>
-              <td>{customer.ORDER_NUMBER}</td>
-              <td>{customer.QUANTITY}</td>
-              <td>${customer.PRICE}</td>
-              <td>{customer.ORDER_DATE}</td>
-              <td>{customer.QTR_ID}</td>
-              <td>{customer.MONTH_ID}</td>
-              <td>{customer.YEAR_ID}</td>
-              <td>{customer.CUSTOMER_NAME}</td> {/* Make sure field names match CSV headers */}
-              <td>{customer.PHONE}</td>
+    <div className={styles.contact_table_container} >
+      <h1>Contact List</h1>
+      <div className={styles.contact__table}>
+        <table style={{ width: '100%', border: '1px solid #ddd', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Register ID</th>
+              <th>
+                <input
+                className={styles.input_wrappers}
+                  value={nameFilter}
+                  placeholder="Name"
+                  onChange={(e) => {
+                    setNameFilter(e.target.value);
+                    filterData(e.target.value, 'name');
+                  }}
+                
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={ageFilter}
+                  placeholder="Age"
+                  onChange={(e) => {
+                    setAgeFilter(e.target.value);
+                    filterData(e.target.value, 'age');
+                  }}
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={phoneNumberFilter}
+                  placeholder="Phone Number"
+                  onChange={(e) => {
+                    setPhoneNumberFilter(e.target.value);
+                    filterData(e.target.value, 'phoneNumber');
+                  }}
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={emailFilter}
+                  placeholder="Email"
+                  onChange={(e) => {
+                    setEmailFilter(e.target.value);
+                    filterData(e.target.value, 'email');
+                  }}
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={addressFilter}
+                  placeholder="Address"
+                  onChange={(e) => {
+                    setAddressFilter(e.target.value);
+                    filterData(e.target.value, 'address');
+                  }}
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={cityFilter}
+                  placeholder="City"
+                  onChange={(e) => {
+                    setCityFilter(e.target.value);
+                    filterData(e.target.value, 'city');
+                  }}
+                />
+              </th>
+              <th>
+                <input
+                 className={styles.input_wrappers}
+                  value={zipCodeFilter}
+                  placeholder="Zip Code"
+                  onChange={(e) => {
+                    setZipCodeFilter(e.target.value);
+                    filterData(e.target.value, 'zipCode');
+                  }}
+                />
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {/* Map over contacts array to render each contact */}
+            {contactList.map((contact) => (
+              <tr key={contact.id}>
+                <td>{contact.id}</td>
+                <td>{contact.registerId}</td>
+                <td>{contact.name}</td>
+                <td>{contact.age}</td>
+                <td>{contact.phoneNumber}</td>
+                <td>{contact.email}</td>
+                <td>{contact.address}</td>
+                <td>{contact.city}</td>
+                <td>{contact.zipCode}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-}
+};
 
-export default Customers;
+export default Contacts;
