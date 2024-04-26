@@ -25,13 +25,13 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to="/FAQ">
-                    <BsFillArchiveFill className='icon'/> FAQ
+                <Link to="/customers">
+                    <BsPeopleFill className='icon'/> Customers
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to="/customers">
-                    <BsPeopleFill className='icon'/> Customers
+                <Link to="/FAQ">
+                    <BsFillArchiveFill className='icon'/> FAQ
                 </Link>
             </li>
             {/* Add more links as needed */}
